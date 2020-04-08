@@ -1,20 +1,3 @@
-/**
- * Define Global Variables
- *
- */
-
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
 // build the nav
 function buildNav() {
   const section = document.getElementsByTagName("section");
@@ -28,10 +11,35 @@ function buildNav() {
     list.appendChild(link);
     document.getElementById("navbar_list").appendChild(list);
   }
+  return section;
 }
 
 // Add class 'active' to section when near top of viewport
+function isActive() {
+  const section = document.getElementsByTagName("section");
+  var i;
+  for (i = 0; i < section.length; i++) {
+    let element = document.getElementById(`section${i + 1}`);
+    let bounding = element.getBoundingClientRect();
+    // if (element.ClassList === "your-active-class") {
+    //   console.log(`Section ${i + 1} is active`);
+    // }
 
+    // let prevActive = document.getElementsByClassName("your-active-class");
+    // console.log(prevActive);
+    if (
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.bottom <= window.innerHeight &&
+      bounding.right <= window.innerWidth
+    ) {
+      const section1 = document.getElementById("section1");
+      section1.classList.remove("your-active-class");
+      // prevActive.classList.remove("your-active-class");
+      element.classList.add("your-active-class");
+    }
+  }
+}
 // Scroll to anchor ID using scrollTO event
 
 /**
@@ -46,3 +54,4 @@ function buildNav() {
 
 // Set sections as active
 buildNav();
+isActive();
