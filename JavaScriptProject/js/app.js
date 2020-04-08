@@ -21,8 +21,11 @@ function buildNav() {
   var i;
   for (i = 0; i < section.length; i++) {
     const list = document.createElement("LI");
+    const link = document.createElement("a");
     const item1 = document.createTextNode(`Section ${i + 1}`);
-    list.appendChild(item1);
+    link.appendChild(item1);
+    link.href = `#section${i + 1}`;
+    list.appendChild(link);
     document.getElementById("navbar_list").appendChild(list);
   }
 }
