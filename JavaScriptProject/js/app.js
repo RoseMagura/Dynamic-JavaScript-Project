@@ -11,11 +11,10 @@ function buildNav() {
     list.appendChild(link);
     document.getElementById("navbar_list").appendChild(list);
   }
-  return section;
 }
 
 // Add class 'active' to section when near top of viewport
-function isActive() {
+function makeActive() {
   const section = document.getElementsByTagName("section");
   var i;
   for (i = 0; i < section.length; i++) {
@@ -40,18 +39,29 @@ function isActive() {
     }
   }
 }
-// Scroll to anchor ID using scrollTO event
+//Hide nav when not in use
+function hideNav() {
+  setTimeout(function() {
+    const nav = document.getElementById("navbar_list");
+    nav.classList.add("hidden");
+  }, 3000);
+}
 
-/**
- * End Main Functions
- * Begin Events
- *
- */
+function showNav() {
+  const nav = document.getElementById("navbar_list");
+  document.addEventListener("scroll", function(e) {
+    nav.classList.remove("hidden");
+  });
+}
+// Scroll to anchor ID using scrollTO event
 
 // Build menu
 
 // Scroll to section on link click
 
 // Set sections as active
+
 buildNav();
-isActive();
+makeActive();
+hideNav();
+showNav();
