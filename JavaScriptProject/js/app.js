@@ -16,6 +16,16 @@
  */
 
 // build the nav
+function buildNav() {
+  const section = document.getElementsByTagName("section");
+  var i;
+  for (i = 0; i < section.length; i++) {
+    const list = document.createElement("LI");
+    const item1 = document.createTextNode(`Section ${i + 1}`);
+    list.appendChild(item1);
+    document.getElementById("navbar_list").appendChild(list);
+  }
+}
 
 // Add class 'active' to section when near top of viewport
 
@@ -32,3 +42,4 @@
 // Scroll to section on link click
 
 // Set sections as active
+buildNav();
