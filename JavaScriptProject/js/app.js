@@ -14,11 +14,12 @@ function buildNav() {
 }
 
 // Add class 'active' to section when near top of viewport
-function makeActive() {
+const makeActive = function() {
   const section = document.getElementsByTagName("section");
   var i;
   for (i = 0; i < section.length; i++) {
     let element = document.getElementById(`section${i + 1}`);
+    element.classList.remove("your-active-class");
     let bounding = element.getBoundingClientRect();
     // if (element.ClassList === "your-active-class") {
     //   console.log(`Section ${i + 1} is active`);
@@ -26,6 +27,8 @@ function makeActive() {
 
     // let prevActive = document.getElementsByClassName("your-active-class");
     // console.log(prevActive);
+
+    //check if this section is in the viewport and then change CSS accordingly
     if (
       bounding.top >= 0 &&
       bounding.left >= 0 &&
@@ -33,12 +36,11 @@ function makeActive() {
       bounding.right <= window.innerWidth
     ) {
       const section1 = document.getElementById("section1");
-      section1.classList.remove("your-active-class");
       // prevActive.classList.remove("your-active-class");
       element.classList.add("your-active-class");
     }
   }
-}
+};
 //Hide nav when not in use
 function hideNav() {
   setTimeout(function() {
@@ -60,8 +62,7 @@ function showNav() {
 // Scroll to section on link click
 
 // Set sections as active
-
+document.addEventListener("scroll", makeActive, false);
 buildNav();
-makeActive();
-hideNav();
 showNav();
+hideNav();
