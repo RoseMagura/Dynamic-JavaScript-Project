@@ -21,12 +21,6 @@ const makeActive = function() {
     let element = document.getElementById(`section${i + 1}`);
     element.classList.remove("your-active-class");
     let bounding = element.getBoundingClientRect();
-    // if (element.ClassList === "your-active-class") {
-    //   console.log(`Section ${i + 1} is active`);
-    // }
-
-    // let prevActive = document.getElementsByClassName("your-active-class");
-    // console.log(prevActive);
 
     //check if this section is in the viewport and then change CSS accordingly
     if (
@@ -36,33 +30,46 @@ const makeActive = function() {
       bounding.right <= window.innerWidth
     ) {
       const section1 = document.getElementById("section1");
-      // prevActive.classList.remove("your-active-class");
       element.classList.add("your-active-class");
     }
   }
 };
+
 //Hide nav when not in use
 function hideNav() {
-  setTimeout(function() {
+  const timerID = setTimeout(function() {
     const nav = document.getElementById("navbar_list");
     nav.classList.add("hidden");
   }, 3000);
+  document.addEventListener("scroll", function() {
+    clearTimeout(timerID);
+  });
 }
 
+//Show nav when scrolling
 function showNav() {
   const nav = document.getElementById("navbar_list");
   document.addEventListener("scroll", function(e) {
     nav.classList.remove("hidden");
   });
 }
-// Scroll to anchor ID using scrollTO event
 
-// Build menu
+//Make sure nav can be hidden as many times as needed by using a loop
+function delayLoop() {
+  let i = 0;
+  setTimeout(function() {
+    if (i < 10) {
+      delayLoop();
+      hideNav();
+    }
+  }, 5000);
+}
+
+// Scroll to anchor ID using scrollTO event
 
 // Scroll to section on link click
 
-// Set sections as active
-document.addEventListener("scroll", makeActive, false);
 buildNav();
 showNav();
-hideNav();
+makeActive();
+delayLoop();
