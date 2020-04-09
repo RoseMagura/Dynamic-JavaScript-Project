@@ -14,14 +14,13 @@ function buildNav() {
 }
 
 // Add class 'active' to section when near top of viewport
-const makeActive = function() {
+function makeActive() {
   const section = document.getElementsByTagName("section");
   var i;
   for (i = 0; i < section.length; i++) {
     let element = document.getElementById(`section${i + 1}`);
     element.classList.remove("your-active-class");
     let bounding = element.getBoundingClientRect();
-
     //check if this section is in the viewport and then change CSS accordingly
     if (
       bounding.top >= 0 &&
@@ -33,7 +32,7 @@ const makeActive = function() {
       element.classList.add("your-active-class");
     }
   }
-};
+}
 
 //Hide nav when not in use
 function hideNav() {
@@ -66,10 +65,31 @@ function delayLoop() {
 }
 
 // Scroll to anchor ID using scrollTO event
+function scrollSetUp() {
+  const section = document.getElementsByTagName("section");
+  for (let i = 0; i < section.length; i++) {
+    let secLoc = document.getElementById(`section${i + 1}`);
+    let rec = secLoc.getBoundingClientRect();
+    let y = rec.bottom;
+    console.log(`Section${i + 1y);
+    window.scrollTo(0, y);
+  }
+}
+document
+  .getElementById("navbar_list")
+  .addEventListener("click", function anchorScroll() {
+    window.scrollTo(100, 100);
+  });
 
 // Scroll to section on link click
+function linkScroll() {}
+
+//Set event listener so that page will dynamically show which pane is active 
+document.addEventListener("scroll", makeActive, false);
 
 buildNav();
 showNav();
-makeActive();
 delayLoop();
+// anchorScroll();
+linkScroll();
+scrollSetUp();
