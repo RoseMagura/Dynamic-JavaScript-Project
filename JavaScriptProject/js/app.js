@@ -1,23 +1,25 @@
 // build the nav
 function buildNav() {
   const section = document.getElementsByTagName("section");
-  var i;
-  for (i = 0; i < section.length; i++) {
+  for (let i = 0; i < section.length; i++) {
     const list = document.createElement("LI");
     const link = document.createElement("a");
     const item1 = document.createTextNode(`Section ${i + 1}`);
     link.appendChild(item1);
-    link.href = `#section${i + 1}`;
+    // link.href = `#section${i + 1}`;
     list.appendChild(link);
     document.getElementById("navbar_list").appendChild(list);
+    list.addEventListener("click", function anchorScroll() {
+      let element = document.getElementById(`section${i + 1}`);
+      element.scrollIntoView();
+    });
   }
 }
 
 // Add class 'active' to section when near top of viewport
 function makeActive() {
   const section = document.getElementsByTagName("section");
-  var i;
-  for (i = 0; i < section.length; i++) {
+  for (let i = 0; i < section.length; i++) {
     let element = document.getElementById(`section${i + 1}`);
     element.classList.remove("your-active-class");
     let bounding = element.getBoundingClientRect();
@@ -64,32 +66,13 @@ function delayLoop() {
   }, 5000);
 }
 
-// Scroll to anchor ID using scrollTO event
-function scrollSetUp() {
-  const section = document.getElementsByTagName("section");
-  for (let i = 0; i < section.length; i++) {
-    let secLoc = document.getElementById(`section${i + 1}`);
-    let rec = secLoc.getBoundingClientRect();
-    let y = rec.bottom;
-    console.log(`Section${i + 1y);
-    window.scrollTo(0, y);
-  }
-}
-document
-  .getElementById("navbar_list")
-  .addEventListener("click", function anchorScroll() {
-    window.scrollTo(100, 100);
-  });
-
 // Scroll to section on link click
 function linkScroll() {}
 
-//Set event listener so that page will dynamically show which pane is active 
+//Set event listener so that page will dynamically show which pane is active
 document.addEventListener("scroll", makeActive, false);
 
 buildNav();
 showNav();
 delayLoop();
-// anchorScroll();
-linkScroll();
-scrollSetUp();
+// linkScroll();
