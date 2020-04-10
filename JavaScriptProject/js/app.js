@@ -6,13 +6,18 @@ function buildNav() {
     const link = document.createElement("a");
     const item1 = document.createTextNode(`Section ${i + 1}`);
     link.appendChild(item1);
-    // link.href = `#section${i + 1}`;
     list.appendChild(link);
     document.getElementById("navbar_list").appendChild(list);
-    list.addEventListener("click", function anchorScroll() {
-      let element = document.getElementById(`section${i + 1}`);
-      element.scrollIntoView();
-    });
+    //This event listener and function will add scroll functionality for sections
+    //nav bar
+    list.addEventListener(
+      "click",
+      function anchorScroll() {
+        let element = document.getElementById(`section${i + 1}`);
+        element.scrollIntoView();
+      },
+      false
+    );
   }
 }
 
@@ -30,7 +35,6 @@ function makeActive() {
       bounding.bottom <= window.innerHeight &&
       bounding.right <= window.innerWidth
     ) {
-      const section1 = document.getElementById("section1");
       element.classList.add("your-active-class");
     }
   }
@@ -50,7 +54,7 @@ function hideNav() {
 //Show nav when scrolling
 function showNav() {
   const nav = document.getElementById("navbar_list");
-  document.addEventListener("scroll", function(e) {
+  document.addEventListener("scroll", function() {
     nav.classList.remove("hidden");
   });
 }
@@ -66,13 +70,9 @@ function delayLoop() {
   }, 5000);
 }
 
-// Scroll to section on link click
-function linkScroll() {}
-
 //Set event listener so that page will dynamically show which pane is active
 document.addEventListener("scroll", makeActive, false);
 
 buildNav();
 showNav();
 delayLoop();
-// linkScroll();

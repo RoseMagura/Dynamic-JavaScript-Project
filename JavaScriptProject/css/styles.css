@@ -1,9 +1,9 @@
 #navbar_list {
   position: fixed;
   top: 20px;
-  font-size: 50px;
+  font-size: 40px;
   background-color: #d2c2ff;
-  margin-left: 250px;
+  margin-left: 50px;
 }
 
 .your-active-class {
@@ -18,5 +18,10 @@
 @media (min-width: 750px) {
   body {
     font-size: 35px;
+  }
+
+  #navbar_list {
+    margin-left: 250px;
+    font-size: 60px;
   }
 }
