@@ -1,16 +1,17 @@
+//create essential global variables
+const section = document.getElementsByTagName("section");
 // build the nav
 function buildNav() {
-  const section = document.getElementsByTagName("section");
   for (let i = 0; i < section.length; i++) {
-    const list = document.createElement("LI");
+    const listItem = document.createElement("LI");
     const link = document.createElement("a");
     const item1 = document.createTextNode(`Section ${i + 1}`);
     link.appendChild(item1);
-    list.appendChild(link);
-    document.getElementById("navbar_list").appendChild(list);
+    listItem.appendChild(link);
+    document.getElementById("navbar_list").appendChild(listItem);
     //This event listener and function will add scroll functionality for sections
     //nav bar
-    list.addEventListener(
+    listItem.addEventListener(
       "click",
       function anchorScroll() {
         let element = document.getElementById(`section${i + 1}`);
@@ -18,12 +19,13 @@ function buildNav() {
       },
       false
     );
+    const navbar_menu = document.getElementById("navbar_menu");
+    navbar_menu.appendChild(document.getElementById("navbar_list"));
   }
 }
 
 // Add class 'active' to section when near top of viewport
 function makeActive() {
-  const section = document.getElementsByTagName("section");
   for (let i = 0; i < section.length; i++) {
     let element = document.getElementById(`section${i + 1}`);
     element.classList.remove("your-active-class");

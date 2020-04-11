@@ -1,11 +1,27 @@
 #navbar_list {
-  position: fixed;
-  top: 20px;
-  font-size: 40px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #d2c2ff;
-  margin-left: 50px;
+  margin: 0px;
+  padding: 0px;
 }
 
+#navbar_list li {
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+#navbar_menu {
+  justify-content: flex-end;
+  margin-left: 200px;
+}
+.page_header {
+  position: fixed;
+  display: block;
+}
 .your-active-class {
   border: 5px solid #a382ff;
   background-color: #f1ecff;
@@ -15,13 +31,36 @@
   visibility: hidden;
 }
 
-@media (min-width: 750px) {
+/* for tablets */
+@media (min-width: 750px) and (max-width: 1030px) {
   body {
     font-size: 35px;
   }
 
+  #navbar_list li {
+    font-size: 35px;
+  }
+  #navbar_menu {
+    margin-left: 500px;
+  }
+}
+
+/* for desktops */
+@media (min-width: 1050px) {
   #navbar_list {
-    margin-left: 250px;
-    font-size: 60px;
+    flex-direction: row;
+  }
+
+  #navbar_list li {
+    font-size: 50px;
+    padding: 10px;
+  }
+
+  #navbar_menu {
+    margin-left: 550px;
+  }
+
+  body {
+    font-size: 40px;
   }
 }
